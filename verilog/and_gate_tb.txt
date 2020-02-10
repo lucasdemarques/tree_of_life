@@ -1,0 +1,30 @@
+// testbench and_gate_verilog
+
+module andgate_tb; // declaração do modulo_tb
+	
+	wire t_y;		 //  modo wire
+	reg t_a, t_b;		 // modo latch *
+
+andgate my_gate 		 // instantiation 
+	( .a(t_a), .b(t_b), .y(t_y) );
+
+initial
+begin
+	$monitor (t_a, t_b, t_y); 
+
+	t_a = 1'b0;	//00 0	...significa que  tamanhodapalavra'base,atribuição
+	t_b = 1'b0;
+	
+	#10		//ESPERAR 10 NANOSEGUNDOS
+	t_a = 1'b0;	//01 1
+	t_b = 1'b1;	
+	
+	#10
+	t_a = 1'b1;	//10 2
+	t_b = 1'b0;
+	
+	#10
+	t_a = 1'b1;	//11 3
+	t_b = 1'b1;
+end
+endmodule
